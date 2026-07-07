@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Nmap GUI</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>Nmap Scanner</h1>
+<select id="scanType">
+    <option value="-sn">Ping Scan</option>
+    <option value="-sV">Service Detection</option>
+    <option value="-F">Fast Scan</option>
+</select>
+<input
+        type="text"
+        id="target"
+        placeholder="Enter IP or Domain">
+
+<button onclick="scanTarget()">
+    Scan
+</button>
+
+<hr>
+
+<pre id="result"></pre>
+
+<script>
+
+    async function scanTarget() {
+
+        let target =
+            document.getElementById("target").value;
+
+        let scanType =
+            document.getElementById("scanType").value;
+
+        if (target.trim() === "") {
+            alert("Please enter IP or Domain");
+            return;
+        }
+
+        document.getElementById("result")
+                .textContent = "Scanning... Please wait...";
+
+        try {
+
+            let response =
+                await fetch(
+                    `/api/scan?target=${target}&scanType=${scanType}`
+                );
+
+            let result =
+                await response.text();
+
+            document.getElementById("result")
+                    .textContent = result;
+
+        } catch (error) {
+
+            document.getElementById("result")
+                    .textContent =
+                    "Error: " + error.message;
+        }
+    }
+
+</script>
+
+</body>
+</html>
