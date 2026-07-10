@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;//using for react
 
 @RestController
 @RequestMapping("/api")
-@CrossOrigin(origins = "http://localhost:5173")//add for combine for react
+@CrossOrigin(origins = "https://nmapgui.vercel.app")//add for combine for react
 
 public class ScanController {
 

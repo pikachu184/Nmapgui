@@ -21,7 +21,7 @@ function App() {
     try {
 
       const response = await fetch(
-        `http://localhost:8080/api/scan?target=${target}&scanType=${scanType}`
+        `https://nmapgui-1.onrender.com/api/scan?target=${target}&scanType=${scanType}`
       );
 
       const data = await response.text();
